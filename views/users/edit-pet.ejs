@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../includes/head") %> <%- include("../includes/navbar") %>
+        <title>Edit Pet Profile</title>
+        <script src="/scripts/breedSelector.js" defer></script>
+    </head>
+    <body class="bg-slate-200">
+        <div class="container mx-auto px-4 pt-8">
+            <div class="flex flex-wrap">
+                <!-- Sidebar -->
+                <section class="w-full md:w-1/6 lg:w-1/4 p-4">
+                    <%- include("../includes/sidebar") %>
+                </section>
+                <!-- End Sidebar -->
+
+                <!-- Main -->
+                <section class="w-full md:w-5/6 lg:w-3/4 p-4">
+                    <div
+                        class="bg-white border-transparent rounded-lg shadow-lg"
+                    >
+                        <div
+                            class="bg-blue-700 border-b-2 border-gray-400 rounded-tl-lg rounded-tr-lg p-2"
+                        >
+                            <h5 class="font-bold uppercase text-white">
+                                Edit Pet Profile - <%= petData.name %>
+                            </h5>
+                        </div>
+                        <div class="p-6">
+                            <form
+                                action="/pet-profile/edit/<%= petData._id %>?_csrf=<%= locals.csrfToken %>"
+                                method="POST"
+                                enctype="multipart/form-data"
+                            >
+                                <section class="flex flex-row flex-wrap">
+                                    <!-- Name -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="name"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Name
+                                        </label>
+                                        <input
+                                            required
+                                            type="text"
+                                            placeholder="Enter Name"
+                                            name="name"
+                                            id="name"
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            value="<%= petData.name %>"
+                                        />
+                                    </div>
+                                    <!-- End Name -->
+
+                                    <!-- Age -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="age"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Age
+                                        </label>
+                                        <input
+                                            required
+                                            type="number"
+                                            placeholder="Enter Age"
+                                            name="age"
+                                            id="age"
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            value="<%= petData.age %>"
+                                        />
+                                    </div>
+                                    <!-- End Age -->
+
+                                    <!-- Gender -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="gender"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Gender
+                                        </label>
+                                        <select
+                                            required
+                                            name="gender"
+                                            id="gender"
+                                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        >
+                                            <option value="male" 
+                                            <%= petData.gender === "male" ? "selected" : "" %>
+                                            >Male</option>
+                                            <option value="female" 
+                                            <%= petData.gender === "female" ? "selected" : "" %>
+                                            >
+                                                Female
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!-- End Gender -->
+
+                                    <!-- Type -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="type"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Type
+                                        </label>
+                                        <select
+                                            required
+                                            name="type"
+                                            id="type"
+                                            placeholder="Enter Type"
+                                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            value="<%= petData.type %>"
+                                        >
+                                            <option value="" disabled selected>
+                                                Select Type
+                                            </option>
+                                            <option value="dog" <%= petData.type == "dog" ? "selected" : "" %>>Dog</option>
+                                            <option value="cat" <%= petData.type == "cat" ? "selected" : "" %>>Cat</option>
+                                            <option value="fish" <%= petData.type == "fish" ? "selected" : "" %>>Bird</option>
+                                            <option value="bird" <%= petData.type == "bird" ? "selected" : "" %>>Bird</option>
+                                            <option value="other" <%= petData.type == "other" ? "selected" : "" %>>Other</option>
+                                        </select>
+                                    </div>
+                                    <!-- End Type -->
+                                    
+                                    <!-- Breed -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="breed"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Breed
+                                        </label>
+                                        <input
+                                            required
+                                            name="breed"
+                                            id="breed"
+                                            placeholder="Enter Type"
+                                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            list="pet-breed"
+                                            value="<%= petData.breed %>"
+                                        />
+                                        <datalist id="pet-breed">
+                                            <option value="" disabled selected>
+                                                Select Breed
+                                            </option>
+                                        </datalist>
+                                    </div>
+                                    <!-- End Breed -->
+
+                                    <!-- Size -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="size"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Size
+                                        </label>
+                                        <select
+                                            required
+                                            name="size"
+                                            id="size"
+                                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        >
+                                            <option value="small"  <%= petData.size === "small" ? "selected" : "" %>>Small</option>
+                                            <option value="medium" <%= petData.size === "medium" ? "selected" : "" %>>
+                                                Medium
+                                            </option>
+                                            <option value="large" <%= petData.size === "large" ? "selected" : "" %>>Large</option>
+                                            <option value="extraLarge" <%= petData.size === "extraLarge" ? "selected" : "" %>>
+                                                Extra Large
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!-- End Size -->
+
+                                    <!-- Color -->
+                                    <div
+                                    class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                    <label
+                                        for="color"
+                                        class="block text-gray-700 text-sm font-bold mb-2"
+                                    >
+                                        Color
+                                    </label>
+                                    <select
+                                        required
+                                        name="color"
+                                        id="color"
+                                        class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    >
+                                        <option value="" disabled selected>
+                                            Select Color
+                                        </option>
+                                        <option value="white"  <%= petData.color === "white" ? "selected" : "" %>>White</option>
+                                        <option value="black"  <%= petData.color === "black" ? "selected" : "" %>>Black</option>
+                                        <option value="blue"  <%= petData.color === "blue" ? "selected" : "" %>>Blue</option>
+                                        <option value="brown"  <%= petData.color === "brown" ? "selected" : "" %>>Brown</option>
+                                        <option value="golden"  <%= petData.color === "golden" ? "selected" : "" %>>Golden</option>
+                                        <option value="gray"  <%= petData.color === "gray" ? "selected" : "" %>>Gray</option>
+                                        <option value="pink"  <%= petData.color === "pink" ? "selected" : "" %>>Pink</option>
+                                        <option value="silver"  <%= petData.color === "silver" ? "selected" : "" %>>Silver</option>
+                                        <option value="red"  <%= petData.color === "red" ? "selected" : "" %>>Red</option>
+                                        <option value="cream"  <%= petData.color === "cream" ? "selected" : "" %>>Cream</option>
+                                    </select>
+                                    </div>
+                                    <!-- End Color -->
+
+                                    <!-- Coat Length -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="coatLength"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Coat Length
+                                        </label>
+                                        <select
+                                            required
+                                            name="coatLength"
+                                            id="coatLength"
+                                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        >
+                                            <option value="short" <%= petData.coatLength === "short" ? "selected" : "" %>>Short</option>
+                                            <option value="medium" <%= petData.coatLength === "medium" ? "selected" : "" %>>
+                                                Medium
+                                            </option>
+                                            <option value="long" <%= petData.coatLength === "long" ? "selected" : "" %>>Long</option>
+                                            <option value="extraLong" <%= petData.coatLength === "extraLong" ? "selected" : "" %>>
+                                                Extra Long
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!-- End Coat Length -->
+
+                                    <!-- Training -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="trained"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Trained
+                                        </label>
+                                        <select
+                                            required
+                                            name="trained"
+                                            id="trained"
+                                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        >
+                                            <option value="yes" <%= petData.trained === "yes" ? "selected" : "" %>>Yes</option>
+                                            <option value="no" <%= petData.trained === "no" ? "selected" : "" %>>No</option>
+                                        </select>
+                                    </div>
+                                    <!-- End Training -->
+
+                                    <!-- Health -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="health"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Health
+                                        </label>
+                                        <select
+                                            required
+                                            name="health"
+                                            id="health"
+                                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        >
+                                            <option value="vaccinations" <%= petData.health === "vaccinations" ? "selected" : "" %>>
+                                                Vaccination up to date
+                                            </option>
+                                            <option value="spayed" <%= petData.health === "spayed" ? "selected" : "" %>>
+                                                Spayed / neutered
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!-- End Health -->
+
+                                    <!-- Characteristics -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full lg:w-1/2">
+                                        <label
+                                            for="characteristics"
+                                            class="block text-gray-700 text-sm font-bold mb-2">
+                                            Characteristics
+                                        </label>
+                                        <section class="flex flex-wrap pl-2">
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="friendly" id="char-friendly" <%= petData.characteristics?.includes("friendly") ? "checked" : "" %>>
+                                                <label for="char-friendly">Friendly</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="intelligent" id="char-intelligent" <%= petData.characteristics?.includes("intelligent") ? "checked" : "" %>>
+                                                <label for="char-intelligent">Intelligent</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="protective" id="char-protective" <%= petData.characteristics?.includes("protective") ? "checked" : "" %>>
+                                                <label for="char-protective">Protective</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="devoted" id="char-devoted" <%= petData.characteristics?.includes("devoted") ? "checked" : "" %>>
+                                                <label for="char-devoted">Devoted</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="responsive" id="char-responsive" <%= petData.characteristics?.includes("responsive") ? "checked" : "" %>>
+                                                <label for="char-responsive">Responsive</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="charming" id="char-charming" <%= petData.characteristics?.includes("charming") ? "checked" : "" %>>
+                                                <label for="char-charming">Charming</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="playful" id="char-playful" <%= petData.characteristics?.includes("playful") ? "checked" : "" %>>
+                                                <label for="char-playful">Playful</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="companion" id="char-companion" <%= petData.characteristics?.includes("companion") ? "checked" : "" %>>
+                                                <label for="char-companion">Companion</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="stubborn" id="char-stubborn" <%= petData.characteristics?.includes("stubborn") ? "checked" : "" %>>
+                                                <label for="char-stubborn">Stubborn</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="gentle" id="char-gentle" <%= petData.characteristics?.includes("gentle") ? "checked" : "" %>>
+                                                <label for="char-gentle">Gentle</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="loyal" id="char-loyal" <%= petData.characteristics?.includes("loyal") ? "checked" : "" %>>
+                                                <label for="char-loyal">Loyal</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="affectionate" id="char-affectionate" <%= petData.characteristics?.includes("affectionate") ? "checked" : "" %>>
+                                                <label for="char-affectionate">Affectionate</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="curious" id="char-curious" <%= petData.characteristics?.includes("curious") ? "checked" : "" %>>
+                                                <label for="char-curious">Curious</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="courageous" id="char-courageous" <%= petData.characteristics?.includes("courageous") ? "checked" : "" %>>
+                                                <label for="char-courageous">Courageous</label>
+                                            </section>
+                                            <section class="w-full md:w-1/2 lg:w-1/3">
+                                                <input type="checkbox" name="characteristics" value="companionable" id="char-companionable" <%= petData.characteristics?.includes("companionable") ? "checked" : "" %>>
+                                                <label for="char-companionable">Companionable</label>
+                                            </section>
+
+                                        </section>
+                                    </div>
+                                    <!-- End Characteristics -->
+
+                                    <!-- Giveaway / Sell -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full lg:w-1/2"
+                                    >
+                                        <div class="flex flex-col w-full">
+                                            <section>
+                                                <label
+                                                    for="giveaway"
+                                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                                >
+                                                    Giveaway / Sell
+                                                </label>
+                                                <select
+                                                    required
+                                                    name="giveaway"
+                                                    id="giveaway"
+                                                    class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                >
+                                                    <option value="true" <%= petData.giveaway === "true" ? "selected" : "" %>>
+                                                        Giveaway
+                                                    </option>
+                                                    <option value="false" <%= petData.giveaway === "false" ? "selected" : "" %>>Sell</option>
+                                                </select>
+                                            </section>
+
+                                            <section>
+                                                <label
+                                                    for="price"
+                                                    class="block text-gray-700 text-sm font-bold my-2"
+                                                >
+                                                    Price
+                                                </label>
+                                                <div
+                                                    class="flex items-center shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight"
+                                                >
+                                                    <i class="fas fa-dollar-sign"></i>
+                                                    <input
+                                                        required
+                                                        name="price"
+                                                        id="price"
+                                                        type="number"
+                                                        class="rounded-r ml-2 w-full text-gray-700 focus:outline-none focus:shadow-outline"
+                                                        value="<%= petData.price %>"
+                                                    />
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <!-- End Giveaway / Sell -->
+
+                                    <!-- Description -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full"
+                                    >
+                                        <textarea name="description" id="description" rows="10" class="w-full resize-none border rounded-md shadow focus:outline-none p-6"><%= petData.description %></textarea>
+                                    </div>
+                                    <!-- End Description -->
+                                </section>
+
+                                <!-- Image Uploader -->
+                                <%- include("../includes/imageUploader", {
+                                multiple: true }) %>
+                                <!-- End Image Uploader -->
+
+                                <!-- Address -->
+                                <section class="flex flex-row flex-wrap">
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="street"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Street
+                                        </label>
+                                        <input required
+                                            type="text"
+                                            name="street"
+                                            id="street"
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            value="<%= petData.address.street %>"
+                                        />
+                                    </div>
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="city"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            City
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="city"
+                                            id="city"
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            value="<%= petData.address.city %>"
+                                        />
+                                    </div>
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="state"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            State
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="state"
+                                            id="state"
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            value="<%= petData.address.state %>"
+                                        />
+                                    </div>
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="country"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Country
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="country"
+                                            id="country"
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            value="<%= petData.address.country %>"
+                                        />
+                                    </div>
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="postal"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Postal Code
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="postal"
+                                            id="postal"
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            value="<%= petData.address.postalCode %>"
+                                        />
+                                    </div>
+                                </section>
+                                <!-- End Address -->
+                                <div class="flex items-center justify-between">
+                                    <button
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                        type="submit"
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <!-- End Main -->
+            </div>
+        </div>
+        <%- include("../includes/footer") %>
+        <script src="https://unpkg.com/create-file-list"></script>
+        <script src="/scripts/imagePreview.js"></script>
+    </body>
+</html>

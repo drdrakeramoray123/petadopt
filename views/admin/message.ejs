@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../includes/head") %> <%- include("../includes/navbar") %>
+        <title>Message</title>
+    </head>
+    <body class="bg-slate-200">
+        <div class="container mx-auto px-4 pt-8">
+            <div class="flex flex-wrap">
+                <!-- Sidebar -->
+                <section class="w-full md:w-1/6 lg:w-1/4 p-4">
+                    <%- include("../includes/sidebar") %>
+                </section>
+                <!-- End Sidebar -->
+
+                <!-- Main -->
+                <section class="w-full md:w-5/6 lg:w-3/4 p-4">
+                    <div
+                        class="bg-white border-transparent h-full rounded-lg shadow-lg"
+                    >
+                        <div
+                            class="bg-blue-700 border-b-2 border-blue-400 rounded-tl-lg rounded-tr-lg p-2"
+                        >
+                            <h5 class="font-bold uppercase text-white">
+                                Inbox - <%= message._id %>
+                            </h5>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex flex-warp mb-6">
+                                <p class="w-2/12 font-bold">Name</p>
+                                <p class="w-10/12"><%= message.name %></p>
+                            </div>
+                            <div class="flex flex-warp mb-6">
+                                <p class="w-2/12 font-bold">Email</p>
+                                <p class="w-10/12"><%= message.email %></p>
+                            </div>
+                            <div class="flex flex-warp mb-6">
+                                <p class="w-2/12 font-bold">Message</p>
+                                <p class="w-10/12"><%= message.message %></p>
+                            </div>
+                            <div class="flex flex-warp mb-6">
+                                <p class="w-2/12 font-bold">Date</p>
+                                <p class="w-10/12">
+                                    <% let date = new Date(message.sentAt) %>
+                                    <%= date.toLocaleString('en-us', { day:
+                                    "numeric", month: 'long', year: "numeric" })
+                                    %> <%= date.toLocaleTimeString('en-us', {
+                                    hour: '2-digit', minute: '2-digit', second:
+                                    '2-digit', hour12: true }) %>
+                                </p>
+                            </div>
+                            <div class="flex flex-warp mb-6">
+                                <a
+                                    href="/message/delete/<%= message._id %>"
+                                    class="px-4 py-2 mx-2 bg-red-500 hover:bg-red-700 text-white rounded-md"
+                                >
+                                    <i class="far fa-trash-alt mr-2"></i>
+                                    Delete
+                                </a>
+                                <a
+                                    href="mailto:<%= message.email %>"
+                                    class="px-4 py-2 mx-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md"
+                                >
+                                    <i class="far fa-reply alt mr-2"></i>
+                                    Reply
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- End Main -->
+            </div>
+        </div>
+        <%- include("../includes/footer") %>
+    </body>
+</html>

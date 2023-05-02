@@ -1,0 +1,163 @@
+<div class="bg-white h-full border-transparent rounded-lg shadow-lg">
+    <nav class="p-3">
+        <ul>
+            <!-- Common -->
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/my-profile"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block"
+                        >My Profile</span
+                    >
+                    <i class="fas fa-user text-2xl"></i>
+                </a>
+            </li>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/edit-profile"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block"
+                        >Edit Profile</span
+                    >
+                    <i class="fas fa-user-edit text-2xl"></i>
+                </a>
+            </li>
+
+            <!-- Admin -->
+            <% if(locals.isAdmin) { %>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/dashboard"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block"
+                        >Dashboard</span
+                    >
+                    <i class="fas fa-chart-line text-2xl"></i>
+                </a>
+            </li>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/users"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block">Users</span>
+                    <i class="fas fa-users text-2xl"></i>
+                </a>
+            </li>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/pets"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block">Pets</span>
+                    <i class="fas fa-paw text-2xl"></i>
+                </a>
+            </li>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/animals"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block">Animals</span>
+                    <i class="fas fa-dog text-2xl"></i>
+                </a>
+            </li>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/applications"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block"
+                        >Applications</span
+                    >
+                    <i class="fas fa-tasks text-2xl"></i>
+                </a>
+            </li>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/adoptions"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block"
+                        >Adoptions</span
+                    >
+                    <i class="fab fa-joget text-2xl"></i>
+                </a>
+            </li>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/messages"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block"
+                        >Messages</span
+                    >
+                    <i class="fas fa-envelope-open-text text-2xl"></i>
+                </a>
+            </li>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/settings"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block"
+                        >Settings</span
+                    >
+                    <i class="fas fa-cogs text-2xl"></i>
+                </a>
+            </li>
+            <% } %>
+
+            <!-- User -->
+            <% if(!locals.isAdmin) { %>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/wishlist"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block"
+                        >My Wishlist</span
+                    >
+                    <i class="fab fa-gratipay text-2xl"></i>
+                </a>
+            </li>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/pet-profile"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block"
+                        >Pet Profiles</span
+                    >
+                    <i class="fas fa-paw text-2xl"></i>
+                </a>
+            </li>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/applications/sent"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block"
+                        >Submitted Applications</span
+                    >
+                    <i class="fas fa-tasks text-2xl"></i>
+                </a>
+            </li>
+            <li class="border border-black rounded p-2 my-2 hover:bg-slate-200">
+                <a
+                    href="/applications/received"
+                    class="flex md:justify-center justify-between lg:justify-between"
+                >
+                    <span class="align-middle md:hidden lg:block"
+                        >Received Applications</span
+                    >
+                    <i class="fas fa-tasks text-2xl"></i>
+                </a>
+            </li>
+            <% } %>
+        </ul>
+    </nav>
+</div>

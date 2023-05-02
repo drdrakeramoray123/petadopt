@@ -1,0 +1,43 @@
+<div
+    class="flex flex-wrap flex-col lg:flex-row items-center justify-between lg:items-start xl:items-center md:flex-col-reverse"
+>
+    <div
+        class="w-full lg:w-2/12 px-4 text-center flex lg:flex-col items-center justify-center lg:justify-between"
+    >
+        <a
+            class="hidden lg:inline-block sm:mb-2 mr-4 sm:mr-0 sm:transform-none hover:text-gray-400"
+            href="#"
+        >
+            <i class="text-md fas fa-chevron-up"></i>
+        </a>
+        <div
+            id="image-container"
+            class="flex lg:flex-col lg:w-16 md:w-full md:justify-evenly"
+        >
+            <% if(images) { %> <% for(let image of images) { %>
+            <a
+                class="h-16 block mb-2 mr-2 sm:mr-0 border-4 rounded-2xl p-1 hover:border-indigo-500"
+                href="#selected-img"
+            >
+                <img class="h-full w-full rounded-xl" src="<%=
+                image.replace(suffix, "") %>" alt="" />
+            </a>
+            <% } %> <% } %>
+        </div>
+        <a
+            class="hidden lg:inline-block sm:mb-2 mr-4 sm:mr-0 sm:transform-none hover:text-gray-400"
+            href="#"
+        >
+            <i class="text-md fas fa-chevron-down"></i>
+        </a>
+    </div>
+    <div class="w-10/12 px-4 overflow-hidden">
+        <div class="w-full h-80 mb-5">
+            <img class="rounded-xl w-full h-full object-cover hover:scale-110
+            transition-all" style="aspect-ratio: 16/9; width: 100%;" src="<%=
+            images != null ? images[0].replace("public", "") : "" %>" alt=""
+            id="selected-img" />
+        </div>
+        <p class="text-sm text-gray-300">Roll over image to zoom in</p>
+    </div>
+</div>

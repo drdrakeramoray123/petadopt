@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../includes/head") %> <%- include("../includes/navbar") %>
+        <title>Dashboard</title>
+    </head>
+    <body class="bg-slate-200">
+        <div class="container mx-auto px-4 pt-8">
+            <div class="flex flex-wrap">
+                <!-- Sidebar -->
+                <section class="w-full md:w-1/6 lg:w-1/4 p-4">
+                    <%- include("../includes/sidebar") %>
+                </section>
+                <!-- End Sidebar -->
+
+                <!-- Main -->
+                <section class="w-full md:w-5/6 lg:w-3/4 p-4">
+                    <div
+                        class="bg-white border-transparent rounded-lg shadow-lg"
+                    >
+                        <div
+                            class="bg-blue-700 border-b-2 border-gray-400 rounded-tl-lg rounded-tr-lg p-2"
+                        >
+                            <h5 class="font-bold uppercase text-white">
+                                Dashboard
+                            </h5>
+                        </div>
+                        <div class="p-6">
+                            Users: <%= userCount %> <br />
+                            Pets: <%= petCount %> <br />
+                        </div>
+                    </div>
+                </section>
+                <!-- End Main -->
+            </div>
+        </div>
+        <%- include("../includes/footer") %>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../includes/head") %> <%- include("../includes/navbar") %>
+        <title>Recognize My Breed</title>
+        <script src="/scripts/tf.min.js"></script>
+        <script src="/scripts/teachablemachine-image.min.js"></script>
+        <script src="/scripts/recognizer.js" defer></script>
+    </head>
+    <body class="bg-slate-200">
+        <section class="z-0 text-gray-600 body-font relative">
+            <div
+                class="container px-5 py-24 mx-auto flex flex-col justify-center items-center sm:flex-nowrap flex-wrap"
+            >
+                <form
+                    action="/scan?_csrf=<%= locals.csrfToken %>"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    id="scan-form"
+                    class="w-3/4 lg:w-1/2 p-5 bg-white rounded-lg shadow-lg"
+                >
+                    <img
+                        class="hidden w-full mb-8"
+                        src=""
+                        alt=""
+                        id="image-preview"
+                    />
+                    <label
+                        for="breedInput"
+                        class="block w-full p-2 ml-1/4 text-center bg-blue-700 text-white font-sans uppercase font-semibold rounded-md cursor-pointer"
+                        >Upload Image</label
+                    >
+                    <input
+                        type="file"
+                        name="breedInput"
+                        id="breedInput"
+                        accept="image/*"
+                        class="hidden"
+                    />
+                    <a
+                        href=""
+                        id="breedOutput"
+                        class="hidden w-full p-2 bg-green-500 text-white rounded-md mt-2 mb-1 text-center"
+                        >No Pet Found</a
+                    >
+                </form>
+            </div>
+        </section>
+        <%- include("../includes/footer") %>
+    </body>
+</html>

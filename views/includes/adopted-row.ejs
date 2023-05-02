@@ -1,0 +1,63 @@
+<tr>
+    <td class="px-6 py-4 whitespace-nowrap">
+        <div class="flex items-center">
+            <div class="flex-shrink-0 h-10 w-10">
+                <% if(adopted.images && adopted.images.length >= 1) { %>
+                <img
+                    class="h-10 w-10 rounded-full"
+                    src="<%= adopted.images[0].replace('public', '') %>"
+                    alt="<%= adopted.name
+                %>"
+                />
+                <% } else { %>
+                <i class="fas fa-paw text-2xl"></i>
+                <% } %>
+            </div>
+            <div class="ml-4">
+                <div class="text-sm font-medium text-gray-900">
+                    <%= adopted.name %>
+                </div>
+                <div class="text-sm text-gray-500">
+                    <%= adopted.breed.split("_").map((word) =>
+                    word.charAt(0).toUpperCase() + word.slice(1)).join(" ") %>,
+                    <%= adopted.type.charAt(0).toUpperCase() +
+                    adopted.type.slice(1) %>
+                </div>
+            </div>
+        </div>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap">
+        <div class="text-sm text-gray-900">
+            <%= adopted.address ? adopted.address.city : null %>
+        </div>
+        <div class="text-sm text-gray-500">
+            <%= adopted.address ? adopted.address.state : null %>
+        </div>
+        <div class="text-sm text-gray-500">
+            <%= adopted.address ? adopted.address.country : null %>
+        </div>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap">
+        <span
+            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= adopted.isHidden ? 'bg-gray-100 text-gray-800' : 'bg-green-100 text-green-800' %>"
+        >
+            <%= adopted.isHidden ? 'Hidden' : 'Active' %>
+        </span>
+    </td>
+    <% if(isAdmin) { %>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        <a href="/user/<%= adopted.uid %>"> View </a>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        <a href="/user/<%= adopted?.oldOwner?._id %>"> View </a>
+    </td>
+    <% } %>
+    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+        <a
+            href="/pet-details/<%= adopted._id %>"
+            class="text-indigo-600 hover:text-indigo-900"
+        >
+            <i class="fas fa-paw text-blue-500 text-2xl"></i>
+        </a>
+    </td>
+</tr>

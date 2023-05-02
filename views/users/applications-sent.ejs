@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../includes/head") %> <%- include("../includes/navbar") %>
+        <title>Application Sent</title>
+    </head>
+    <body class="bg-slate-200">
+        <div class="container mx-auto px-4 pt-8">
+            <div class="flex flex-wrap">
+                <!-- Sidebar -->
+                <section class="w-full md:w-1/6 lg:w-1/4 p-4">
+                    <%- include("../includes/sidebar") %>
+                </section>
+                <!-- End Sidebar -->
+
+                <!-- Main -->
+                <section class="w-full md:w-5/6 lg:w-3/4 p-4">
+                    <div
+                        class="bg-white border-transparent h-full rounded-lg shadow-lg"
+                    >
+                        <div
+                            class="bg-blue-700 border-b-2 border-blue-400 rounded-tl-lg rounded-tr-lg p-2"
+                        >
+                            <h5 class="font-bold uppercase text-white">
+                                Submitted Applications
+                            </h5>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex flex-wrap mb-6">
+                                <% if(!applications) { %>
+                                <div class="w-full px-3">
+                                    <p class="text-center text-gray-600">
+                                        You haven't applied for any pet.
+                                    </p>
+                                </div>
+                                <% } else { for(let application of applications)
+                                { %> %>
+                                <div class="w-full">
+                                    <div
+                                        class="m-2 p-2 w-full <%= application.userStatus === 'Pending' ? 'bg-orange-500 hover:bg-orange-700' : application.userStatus === 'Approved' ? 'bg-green-500 hover:bg-green-700' : 'bg-red-500 hover:bg-red-700' %> lg:min-h-max text-white shadow-lg rounded-md"
+                                    >
+                                        <div class="flex items-center">
+                                            <div class="py-1 w-full">
+                                                <h3
+                                                    class="text-lg font-bold flex flex-wrap justify-between"
+                                                >
+                                                    <span>
+                                                        Application ID:
+                                                    </span>
+                                                    <a
+                                                        href="/application/<%= application._id %>"
+                                                        class="text-gray-600"
+                                                    >
+                                                        <%= application._id %>
+                                                    </a>
+                                                </h3>
+                                                <h3
+                                                    class="text-lg font-bold flex flex-wrap justify-between"
+                                                >
+                                                    <span>
+                                                        Applicant Name:
+                                                    </span>
+                                                    <a
+                                                        href="/user/<%= application.adopterId %>"
+                                                        class="text-gray-600"
+                                                    >
+                                                        <%=
+                                                        application.applicantName
+                                                        %>
+                                                    </a>
+                                                </h3>
+                                                <h3
+                                                    class="text-lg font-bold flex flex-wrap justify-between"
+                                                >
+                                                    <span> Owner Name: </span>
+                                                    <a
+                                                        href="/user/<%= application.owner._id %>"
+                                                        class="text-gray-600"
+                                                    >
+                                                        <%=
+                                                        application.owner.firstName
+                                                        +
+                                                        application.owner.lastName
+                                                        %>
+                                                    </a>
+                                                </h3>
+                                                <h3
+                                                    class="text-lg font-bold flex flex-wrap justify-between"
+                                                >
+                                                    <span> Pet's Name: </span>
+                                                    <a
+                                                        href="/pet-details/<%= application.petId %>"
+                                                        class="text-gray-600"
+                                                    >
+                                                        <%= application.pet.name
+                                                        %>
+                                                    </a>
+                                                </h3>
+                                                <p
+                                                    class="text-sm text-gray-200"
+                                                >
+                                                    <a
+                                                        href="/application/<%= application._id %>/delete"
+                                                    >
+                                                        <i
+                                                            class="fas fa-trash-alt"
+                                                        ></i>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } } %>
+                            </div>
+                        </div>
+                        <% currentPage == null ? currentPage = 1 : currentPage
+                        %> <% if(pages > 1) { %>
+                        <div class="my-2 flex justify-center">
+                            <% for (let i = 1; i <= pages; i++) { %>
+                            <a
+                                href="?page=<%= i %>"
+                                class="m-2 px-4 py-2 rounded-md outline-none <%= (currentPage == i) ? 'bg-indigo-600 text-white' : 'border-2 border-transparent hover:border-indigo-400 hover:text-indigo-400' %>"
+                            >
+                                <%= i %>
+                            </a>
+                            <% } %>
+                        </div>
+                        <% } %>
+                    </div>
+                </section>
+                <!-- End Main -->
+            </div>
+        </div>
+        <%- include("../includes/footer") %>
+    </body>
+</html>

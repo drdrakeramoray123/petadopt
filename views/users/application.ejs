@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../includes/head") %> <%- include("../includes/navbar") %>
+        <title>Adoption Form</title>
+    </head>
+    <body class="bg-slate-200">
+        <div class="container mx-auto px-4 pt-8">
+            <div
+                class="flex flex-wrap flex-col gap-4 mb-4"
+            >
+                <input
+                    type="hidden"
+                    name="_csrf"
+                    value="<%= locals.csrfToken %>"
+                />
+
+                <section class="flex flex-wrap mb-4 gap-2 w-full">
+                    <label class="font-bold" for="applicant-name"
+                        >Applicant Name</label
+                    >
+                    <input
+                        class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                        type="text"
+                        id="applicant-name"
+                        name="applicantName"
+                        value="<%= application.applicantName %>"
+                        readonly
+                    />
+                </section>
+                <section class="flex flex-wrap mb-4">
+                    <section class="w-full md:w-1/2 lg:w-1/3">
+                        <label
+                            class="font-bold w-full md:w-1/2 lg:w-1/3"
+                            for="address-city"
+                            >City</label
+                        >
+                        <input
+                            class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                            type="text"
+                            id="address-city"
+                            name="addressCity"
+                            value="<%= application.addressCity %>"
+                            readonly
+                        />
+                    </section>
+                    <section class="w-full md:w-1/2 lg:w-1/3">
+                        <label
+                            class="font-bold w-full md:w-1/2 lg:w-1/3"
+                            for="address-state"
+                            >State</label
+                        >
+                        <input
+                            class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                            type="text"
+                            id="address-state"
+                            name="addressState"
+                            value="<%= application.addressState %>"
+                            readonly
+                        />
+                    </section>
+                    <section class="w-full md:w-1/2 lg:w-1/3">
+                        <label
+                            class="font-bold w-full md:w-1/2 lg:w-1/3"
+                            for="address-country"
+                            >Country</label
+                        >
+                        <input
+                            class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                            type="text"
+                            id="address-country"
+                            name="addressCountry"
+                            value="<%= application.addressCountry %>"
+                            readonly
+                        />
+                    </section>
+                    <section class="w-full md:w-1/2 lg:w-1/3">
+                        <label
+                            class="font-bold w-full md:w-1/2 lg:w-1/3"
+                            for="address-zip"
+                            >Zip</label
+                        >
+                        <input
+                            class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                            type="text"
+                            id="address-zip"
+                            name="addressZip"
+                            min="5"
+                            max="6"
+                            value="<%= application.addressZip %>"
+                            readonly
+                        />
+                    </section>
+                    <section class="w-full md:w-1/2 lg:w-1/3">
+                        <label
+                            class="font-bold w-full md:w-1/2 lg:w-1/3"
+                            for="phone"
+                            >Phone</label
+                        >
+                        <input
+                            class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                            type="text"
+                            id="phone"
+                            name="phone"
+                            value="<%= application.phone %>"
+                            readonly
+                        />
+                    </section>
+                    <section class="w-full md:w-1/2 lg:w-1/3">
+                        <label
+                            class="font-bold w-full md:w-1/2 lg:w-1/3"
+                            for="email"
+                            >Email</label
+                        >
+                        <input
+                            class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                            type="email"
+                            id="email"
+                            name="email"
+                            value="<%= application.email %>"
+                            readonly
+                        />
+                    </section>
+                </section>
+                <section class="flex flex-wrap mb-4 gap-8">
+                    <label class="font-bold" for="aboutYou"
+                        >Something about you</label
+                    >
+                    <section class="flex w-full items-center gap-2">
+                        <textarea
+                            class="appearance-none w-full bg-transparent border-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400 resize-none"
+                            type="text"
+                            id="aboutYou"
+                            name="aboutYou"
+                            rows="5"
+                            readonly
+                        ><%= application.aboutYou %></textarea>
+                    </section>
+                </section>
+                <section class="flex flex-wrap mb-4 gap-8">
+                    <label class="font-bold" for="housing"
+                        >In what type of housing do you reside?</label
+                    >
+                    <section class="flex items-center gap-2">
+                        <input type="radio" onclick="return false" name="housing" id="apt-condo"
+                        value="apt-condo" <%= application.housing ===
+                        'apt-condo' ? 'checked' : '' %> />
+                        <label class="font-bold" for="apt-condo"
+                            >Apt/Condo</label
+                        >
+                    </section>
+                    <section class="flex items-center gap-2">
+                        <input type="radio" onclick="return false" name="housing" id="house"
+                        value="house" <%= application.housing === 'house' ?
+                        'checked' : '' %> />
+                        <label class="font-bold" for="house">House</label>
+                    </section>
+                    <section class="flex items-center gap-2">
+                        <input type="radio" onclick="return false" name="housing" id="other"
+                        value="other" <%= application.housing === 'other' ?
+                        'checked' : '' %> />
+                        <label class="font-bold" for="other">Other</label>
+                    </section>
+                </section>
+                <section class="flex flex-wrap mb-4 gap-8">
+                    <label class="font-bold" for="rent"
+                        >Do you rent this property?</label
+                    >
+                    <section class="flex items-center gap-2">
+                        <input type="radio" onclick="return false" name="rent" id="rent-yes"
+                        value="yes" <%= application.rent === 'yes' ? 'checked' :
+                        '' %> />
+                        <label class="font-bold" for="rent-yes">Yes</label>
+                    </section>
+                    <section class="flex items-center gap-2">
+                        <input type="radio" onclick="return false" name="rent" id="rent-no" value="no"
+                        <%= application.rent === 'no' ? 'checked' : '' %> />
+                        <label class="font-bold" for="rent-no">No</label>
+                    </section>
+                </section>
+                <section class="flex flex-wrap mb-4 gap-2">
+                    <label class="font-bold w-full" for="landlord-name"
+                        >If you rent:
+                    </label>
+                    <label class="font-bold" for="landlord-name"
+                        >Landlord's Name</label
+                    >
+                    <input
+                        class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                        type="text"
+                        id="landlord-name"
+                        name="landlordName"
+                        value="<%= application.landlordName %>"
+                        readonly
+                    />
+                    <label class="font-bold" for="landlord-phone"
+                        >Landlord's Phone</label
+                    >
+                    <input
+                        class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                        type="tel"
+                        id="landlord-phone"
+                        name="landlordPhone"
+                        min="10"
+                        max="12"
+                        value="<%= application.landlordPhone %>"
+                        readonly
+                    />
+                </section>
+                <section class="flex flex-wrap mb-4 gap-8">
+                    <label class="font-bold" for="moving"
+                        >Do you plan on moving in the next 12 months?</label
+                    >
+                    <section class="flex items-center gap-2">
+                        <input type="radio" onclick="return false" name="moving" id="moving-yes"
+                        value="yes" <%= application.moving === 'yes' ? 'checked'
+                        : '' %> />
+                        <label class="font-bold" for="moving-yes">Yes</label>
+                    </section>
+                    <section class="flex items-center gap-2">
+                        <input type="radio" onclick="return false" name="moving" id="moving-no"
+                        value="no" <%= application.moving === 'no' ? 'checked' :
+                        '' %> />
+                        <label class="font-bold" for="moving-no">No</label>
+                    </section>
+                </section>
+                <section class="flex flex-wrap mb-4 gap-2">
+                    <label class="font-bold" for="after-moving"
+                        >If yes, what do you plan to do with the animal?</label
+                    >
+                    <input
+                        class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                        type="text"
+                        name="afterMoving"
+                        id="after-moving"
+                        value="<%= application.afterMoving %>"
+                        readonly
+                    />
+                </section>
+                <section class="flex flex-wrap mb-4 gap-8">
+                    <label class="font-bold" for="adoptReasonBrief"
+                        >Explain the reason in brief</label
+                    >
+                    <section class="flex w-full items-center gap-2">
+                        <textarea
+                            class="appearance-none w-full bg-transparent border-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400 resize-none"
+                            type="text"
+                            id="adoptReasonBrief"
+                            name="adoptReasonBrief"
+                            rows="5"
+                            readonly
+                        ><%= application.adoptReasonBrief %></textarea
+                        >
+                    </section>
+                </section>
+                <section class="flex flex-wrap mb-4">
+                    <label class="font-bold w-full" for="reason"
+                        >Why do you want to adopt this pet?</label
+                    >
+                    <section
+                        class="flex items-center gap-2 w-full md:w-1/2 lg:w-1/3"
+                    >
+                        <input type="checkbox" onclick="return false" name="reason"
+                        id="companion-for-child" value="companion-for-child" <%=
+                        application.reason.includes('companion-for-child') ?
+                        'checked' : '' %> />
+                        <label class="font-bold" for="companion-for-child"
+                            >Companion for a child</label
+                        >
+                    </section>
+                    <section
+                        class="flex items-center gap-2 w-full md:w-1/2 lg:w-1/3"
+                    >
+                        <input type="checkbox" onclick="return false" name="reason"
+                        id="companion-for-other-pet" 
+                        value="companion-for-other-pet" <%=
+                        application.reason.includes('companion-for-other-pet') ?
+                        'checked' : '' %> />
+                        <label class="font-bold" for="companion-for-other-pet"
+                            >Companion for other pet</label
+                        >
+                    </section>
+                    <section
+                        class="flex items-center gap-2 w-full md:w-1/2 lg:w-1/3"
+                    >
+                        <input type="checkbox" onclick="return false" name="reason"
+                        id="companion-for-self" value="companion-for-self" <%=
+                        application.reason.includes('companion-for-self') ?
+                        'checked' : '' %> />
+                        <label class="font-bold" for="companion-for-self"
+                            >Companion for self</label
+                        >
+                    </section>
+                    <section
+                        class="flex items-center gap-2 w-full md:w-1/2 lg:w-1/3"
+                    >
+                        <input type="checkbox" onclick="return false" name="reason" id="security"
+                        value="security" <%=
+                        application.reason.includes('security') ? 'checked' : ''
+                        %> />
+                        <label class="font-bold" for="security">Security</label>
+                    </section>
+                    <section
+                        class="flex items-center gap-2 w-full md:w-1/2 lg:w-1/3"
+                    >
+                        <input type="checkbox" onclick="return false" name="reason" id="house-pet"
+                        value="house-pet" <%=
+                        application.reason.includes('house-pet') ? 'checked' :
+                        '' %> />
+                        <label class="font-bold" for="house-pet"
+                            >House pet</label
+                        >
+                    </section>
+                    <section
+                        class="flex items-center gap-2 w-full md:w-1/2 lg:w-1/3"
+                    >
+                        <input type="checkbox" onclick="return false" name="reason"
+                        id="working-dog-mouse-chaser"
+                        value="working-dog-mouse-chaser" <%=
+                        application.reason.includes('working-dog-mouse-chaser')
+                        ? 'checked' : '' %> />
+                        <label class="font-bold" for="working-dog-mouse-chaser"
+                            >Working dog mouse chaser</label
+                        >
+                    </section>
+                    <section
+                        class="flex items-center gap-2 w-full md:w-1/2 lg:w-1/3"
+                    >
+                        <input
+                            type="checkbox"
+                            name="reason"
+                            id="breeding"
+                            value="breeding"
+                            onclick="return false"
+                            <%= application.reason.includes('breeding') ? 'checked'
+                            : '' %>
+                        />
+                        <label class="font-bold" for="breeding">Breeding</label>
+                    </section>
+                    <section
+                        class="flex items-center gap-2 w-full md:w-1/2 lg:w-1/3"
+                    >
+                        <input
+                            type="checkbox"
+                            name="reason"
+                            id="other"
+                            value="other"
+                            onclick="return false"
+                            <%= application.reason.includes('other') ? 'checked'
+                            : '' %>
+                        />
+                        <label class="font-bold" for="other">Other</label>
+                    </section>
+                </section>
+                <section class="flex flex-wrap mb-4 gap-2">
+                    <label class="font-bold" for="other-need-reason"
+                        >If other, please explain</label
+                    >
+                    <input
+                        class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                        type="text"
+                        name="otherNeedReason"
+                        id="other-need-reason"
+                        value="<%= application.otherNeedReason %>"
+                        readonly
+                    />
+                </section>
+                <section class="flex flex-wrap mb-4 gap-8">
+                    <label class="font-bold" for="gift"
+                        >Is this pet a gift for someone?</label
+                    >
+                    <section class="flex items-center gap-2">
+                        <input
+                            type="radio"
+                            name="isGift"
+                            id="gift-yes"
+                            value="yes"
+                            onclick="return false"
+                            <%= application.isGift === 'yes' ? 'checked' : '' %>
+                        />
+                        <label class="font-bold" for="gift-yes">Yes</label>
+                    </section>
+                    <section class="flex items-center gap-2">
+                        <input
+                            type="radio"
+                            name="isGift"
+                            id="gift-no"
+                            value="no"
+                            onclick="return false"
+                            <%= application.isGift === 'no' ? 'checked' : '' %>
+                        />
+                        <label class="font-bold" for="gift-no">No</label>
+                    </section>
+                </section>
+                <section class="flex flex-wrap mb-4 gap-2 w-full">
+                    <label class="font-bold" for="gift-for">If yes, who?</label>
+                    <input
+                        class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                        type="text"
+                        name="giftFor"
+                        id="gift-for"
+                        value="<%= application.giftFor %>"
+                        readonly
+                    />
+                </section>
+                <section class="flex flex-wrap mb-4 gap-2">
+                    <label class="font-bold" for="previous-pets"
+                        >List all current animals and animals you have had in
+                        the last 10 years.</label
+                    >
+
+                    <section class="flex flex-wrap mb-4 gap-2">
+                        <label class="font-bold" for="pet-name">Name</label>
+                        <input
+                            class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                            type="text"
+                            name="petName"
+                            id="pet-name"
+                            value="<%= application.petName %>"
+                            readonly
+                        />
+                        <label class="font-bold" for="pet-breed">Breed</label>
+                        <input
+                            class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                            type="text"
+                            name="petBreed"
+                            id="pet-breed"
+                            value="<%= application.petBreed %>"
+                            readonly
+                        />
+                        <label class="font-bold" for="pet-gender">Gender</label>
+                        <select name="petGender" id="pet-gender">
+                            <option value="male"
+                            <%= application.petGender === "male" ? "selected" : "disabled" %>
+                            >Male</option>
+                            <option value="female"
+                            <%= application.petGender === "female" ? "selected" : "disabled" %>
+                            >Female</option>
+                        </select>
+                        <label class="font-bold" for="pet-vaccination"
+                            >Current on Vaccination?</label
+                        >
+                        <input
+                            class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                            type="text"
+                            name="petVaccination"
+                            id="pet-vaccination"
+                            value="<%= application.petVaccination %>"
+                            readonly
+                        />
+                    </section>
+                    <section>
+                        <label class="font-bold" for="pet-still-own"
+                            >Do you still own it? If not, why?</label
+                        >
+                        <input
+                            class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                            type="text"
+                            name="petStillOwn"
+                            id="pet-still-own"
+                            value="<%= application.petStillOwn %>"
+                            readonly
+                        />
+                    </section>
+                </section>
+                <section class="flex flex-wrap mb-4 gap-2">
+                    <label class="font-bold w-full" for="veterinarians"
+                        >List all veterinarians you have taken your pets to in
+                        the last 10 years and the veterinarian that you plan on
+                        using for this pet.</label
+                    >
+                    <label class="font-bold" for="vet-name">Veterinarian</label>
+                    <input
+                        type="text"
+                        name="vetName"
+                        id="vet-name"
+                        class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                        value="<%= application.vetName %>"
+                        readonly
+                    />
+                    <label class="font-bold" for="vet-phone">Phone</label>
+                    <input
+                        type="text"
+                        name="vetPhone"
+                        id="vet-phone"
+                        class="appearance-none bg-transparent border-b-2 border-indigo-700 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-indigo-400"
+                        value="<%= application.vetPhone %>"
+                        readonly
+                    />
+                </section>
+                <section class="flex flex-wrap mb-4 gap-8">
+                    <label class="font-bold" for="fdra-contact"
+                        >Do you grant permission to FDRA to contact your
+                        vet(s)?</label
+                    >
+                    <input
+                        type="radio"
+                        name="vetContactPermission"
+                        id="fdra-contact-yes"
+                        value="yes"
+                        onclick="return false"
+                        <%= application.vetContactPermission === 'yes' ? 'checked' : '' %>
+                    />
+                    <label class="font-bold" for="fdra-contact-yes">Yes</label>
+                    <input
+                        type="radio"
+                        name="vetContactPermission"
+                        id="fdra-contact-no"
+                        value="no"
+                        onclick="return false"
+                        <%= application.vetContactPermission === 'no' ? 'checked' : '' %>
+                    />
+                    <label class="font-bold" for="fdra-contact-no">No</label>
+                </section>
+                <section class="flex justify-between">
+                    <a
+                        href="/application/<%= application._id %>/approve"
+                        class="inline-block rounded-md bg-green-600 font-bold text-white py-2 px-4"
+                    >
+                        <i class="fas fa-check"></i>
+                        Approve
+                    </a>
+                    <a
+                        href="/application/<%= application._id %>/reject"
+                        class="inline-block rounded-md bg-red-600 font-bold text-white py-2 px-4"
+                    >
+                        <i class="fas fa-times"></i>
+                        Reject
+                    </a>
+                    <a
+                        href="/application/<%= application._id %>/delete"
+                        class="inline-block rounded-md bg-gray-600 font-bold text-white py-2 px-4"
+                    >
+                        <i class="fas fa-trash-alt"></i>
+                        Delete
+                    </a>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

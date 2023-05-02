@@ -1,0 +1,722 @@
+<h3 class="sr-only">Categories</h3>
+<!-- Breed -->
+<div x-data="{ open: false }" class="py-6 border-b border-gray-200">
+    <h3 class="flow-root -my-3">
+        <button
+            type="button"
+            x-description="Expand/collapse section button"
+            class="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500"
+            aria-controls="filter-section-1"
+            @click="open = !open"
+            aria-expanded="true"
+            x-bind:aria-expanded="open.toString()"
+        >
+            <span class="font-medium text-gray-900"> Breed </span>
+            <span class="flex items-center ml-6">
+                <i class="fas fa-plus" x-show="!(open)"></i>
+                <i class="fas fa-minus" x-show="open"></i>
+            </span>
+        </button>
+    </h3>
+    <div
+        class="pt-6"
+        x-description="Filter section, show/hide based on section state."
+        id="filter-section-1"
+        x-show="open"
+    >
+        <div class="space-y-4">
+            <div class="flex items-center">
+                <input
+                    id="filter-category-0"
+                    name="category[]"
+                    value="new-arrivals"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label
+                    for="filter-category-0"
+                    class="ml-3 text-sm text-gray-600"
+                >
+                    Pug
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-category-1"
+                    name="category[]"
+                    value="sale"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label
+                    for="filter-category-1"
+                    class="ml-3 text-sm text-gray-600"
+                >
+                    Bulldog
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-category-2"
+                    name="category[]"
+                    value="travel"
+                    type="checkbox"
+                    checked=""
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label
+                    for="filter-category-2"
+                    class="ml-3 text-sm text-gray-600"
+                >
+                    Husky
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-category-3"
+                    name="category[]"
+                    value="organization"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label
+                    for="filter-category-3"
+                    class="ml-3 text-sm text-gray-600"
+                >
+                    Havanese
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-category-4"
+                    name="category[]"
+                    value="accessories"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label
+                    for="filter-category-4"
+                    class="ml-3 text-sm text-gray-600"
+                >
+                    Beagle
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breed -->
+
+<!-- Age -->
+<div x-data="{ open: false }" class="py-6 border-b border-gray-200">
+    <h3 class="flow-root -my-3">
+        <button
+            type="button"
+            x-description="Expand/collapse section button"
+            class="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500"
+            aria-controls="filter-section-2"
+            @click="open = !open"
+            aria-expanded="true"
+            x-bind:aria-expanded="open.toString()"
+        >
+            <span class="font-medium text-gray-900"> Age </span>
+            <span class="flex items-center ml-6">
+                <i class="fas fa-plus" x-show="!(open)"></i>
+                <i class="fas fa-minus" x-show="open"></i>
+            </span>
+        </button>
+    </h3>
+    <div
+        class="pt-6"
+        x-description="Filter section, show/hide based on section state."
+        id="filter-section-2"
+        x-show="open"
+    >
+        <div class="space-y-4">
+            <div class="flex items-center">
+                <input
+                    id="filter-size-0"
+                    name="age[]"
+                    value="puppy"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-0" class="ml-3 text-sm text-gray-600">
+                    Puppy
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-1"
+                    name="age[]"
+                    value="young"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-1" class="ml-3 text-sm text-gray-600">
+                    Young
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-2"
+                    name="age[]"
+                    value="adult"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-2" class="ml-3 text-sm text-gray-600">
+                    Adult
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-3"
+                    name="age[]"
+                    value="senior"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-3" class="ml-3 text-sm text-gray-600">
+                    Senior
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Age -->
+
+<!-- Size -->
+<div x-data="{ open: false }" class="py-6 border-b border-gray-200">
+    <h3 class="flow-root -my-3">
+        <button
+            type="button"
+            x-description="Expand/collapse section button"
+            class="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500"
+            aria-controls="filter-section-2"
+            @click="open = !open"
+            aria-expanded="true"
+            x-bind:aria-expanded="open.toString()"
+        >
+            <span class="font-medium text-gray-900"> Size </span>
+            <span class="flex items-center ml-6">
+                <i class="fas fa-plus" x-show="!(open)"></i>
+                <i class="fas fa-minus" x-show="open"></i>
+            </span>
+        </button>
+    </h3>
+    <div
+        class="pt-6"
+        x-description="Filter section, show/hide based on section state."
+        id="filter-section-2"
+        x-show="open"
+    >
+        <div class="space-y-4">
+            <div class="flex items-center">
+                <input
+                    id="filter-size-0"
+                    name="size[]"
+                    value="small"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-0" class="ml-3 text-sm text-gray-600">
+                    Small
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-1"
+                    name="size[]"
+                    value="medium"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-1" class="ml-3 text-sm text-gray-600">
+                    Medium
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-2"
+                    name="size[]"
+                    value="large"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-2" class="ml-3 text-sm text-gray-600">
+                    Large
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-3"
+                    name="size[]"
+                    value="extraLarge"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-3" class="ml-3 text-sm text-gray-600">
+                    Extra Large
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Size -->
+
+<!-- Gender -->
+<div x-data="{ open: false }" class="py-6 border-b border-gray-200">
+    <h3 class="flow-root -my-3">
+        <button
+            type="button"
+            x-description="Expand/collapse section button"
+            class="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500"
+            aria-controls="filter-section-2"
+            @click="open = !open"
+            aria-expanded="true"
+            x-bind:aria-expanded="open.toString()"
+        >
+            <span class="font-medium text-gray-900"> Gender </span>
+            <span class="flex items-center ml-6">
+                <i class="fas fa-plus" x-show="!(open)"></i>
+                <i class="fas fa-minus" x-show="open"></i>
+            </span>
+        </button>
+    </h3>
+    <div
+        class="pt-6"
+        x-description="Filter section, show/hide based on section state."
+        id="filter-section-2"
+        x-show="open"
+    >
+        <div class="space-y-4">
+            <div class="flex items-center">
+                <input
+                    id="filter-size-0"
+                    name="gender[]"
+                    value="male"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-0" class="ml-3 text-sm text-gray-600">
+                    Male
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-1"
+                    name="gender[]"
+                    value="female"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-1" class="ml-3 text-sm text-gray-600">
+                    Female
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Gender -->
+
+<!-- Good With -->
+<div x-data="{ open: false }" class="py-6 border-b border-gray-200">
+    <h3 class="flow-root -my-3">
+        <button
+            type="button"
+            x-description="Expand/collapse section button"
+            class="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500"
+            aria-controls="filter-section-2"
+            @click="open = !open"
+            aria-expanded="true"
+            x-bind:aria-expanded="open.toString()"
+        >
+            <span class="font-medium text-gray-900"> Good With </span>
+            <span class="flex items-center ml-6">
+                <i class="fas fa-plus" x-show="!(open)"></i>
+                <i class="fas fa-minus" x-show="open"></i>
+            </span>
+        </button>
+    </h3>
+    <div
+        class="pt-6"
+        x-description="Filter section, show/hide based on section state."
+        id="filter-section-2"
+        x-show="open"
+    >
+        <div class="space-y-4">
+            <div class="flex items-center">
+                <input
+                    id="filter-size-0"
+                    name="goodWith[]"
+                    value="kids"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-0" class="ml-3 text-sm text-gray-600">
+                    Kids
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-1"
+                    name="goodWith[]"
+                    value="otherPets"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-1" class="ml-3 text-sm text-gray-600">
+                    Other Pets
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Good With -->
+
+<!-- Coat Length -->
+<div x-data="{ open: false }" class="py-6 border-b border-gray-200">
+    <h3 class="flow-root -my-3">
+        <button
+            type="button"
+            x-description="Expand/collapse section button"
+            class="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500"
+            aria-controls="filter-section-2"
+            @click="open = !open"
+            aria-expanded="true"
+            x-bind:aria-expanded="open.toString()"
+        >
+            <span class="font-medium text-gray-900"> Coat Length </span>
+            <span class="flex items-center ml-6">
+                <i class="fas fa-plus" x-show="!(open)"></i>
+                <i class="fas fa-minus" x-show="open"></i>
+            </span>
+        </button>
+    </h3>
+    <div
+        class="pt-6"
+        x-description="Filter section, show/hide based on section state."
+        id="filter-section-2"
+        x-show="open"
+    >
+        <div class="space-y-4">
+            <div class="flex items-center">
+                <input
+                    id="filter-size-0"
+                    name="coatLength[]"
+                    value="hairless"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-0" class="ml-3 text-sm text-gray-600">
+                    Hairless
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-1"
+                    name="coatLength[]"
+                    value="short"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-1" class="ml-3 text-sm text-gray-600">
+                    Short
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-2"
+                    name="coatLength[]"
+                    value="medium"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-2" class="ml-3 text-sm text-gray-600">
+                    Medium
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-3"
+                    name="coatLength[]"
+                    value="long"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-3" class="ml-3 text-sm text-gray-600">
+                    Long
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-4"
+                    name="coatLength[]"
+                    value="wire"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-4" class="ml-3 text-sm text-gray-600">
+                    Wire
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-5"
+                    name="coatLength[]"
+                    value="curly"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-5" class="ml-3 text-sm text-gray-600">
+                    Curly
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Coat Length -->
+
+<!-- Color -->
+<div x-data="{ open: false }" class="py-6 border-b border-gray-200">
+    <h3 class="flow-root -my-3">
+        <button
+            type="button"
+            x-description="Expand/collapse section button"
+            class="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500"
+            aria-controls="filter-section-0"
+            @click="open = !open"
+            aria-expanded="true"
+            x-bind:aria-expanded="open.toString()"
+        >
+            <span class="font-medium text-gray-900"> Color </span>
+            <span class="flex items-center ml-6">
+                <i class="fas fa-plus" x-show="!(open)"></i>
+                <i class="fas fa-minus" x-show="open"></i>
+            </span>
+        </button>
+    </h3>
+    <div
+        class="pt-6"
+        x-description="Filter section, show/hide based on section state."
+        id="filter-section-0"
+        x-show="open"
+    >
+        <div class="space-y-4">
+            <div class="flex items-center">
+                <input
+                    id="filter-color-0"
+                    name="color[]"
+                    value="white"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-color-0" class="ml-3 text-sm text-gray-600">
+                    White
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-color-1"
+                    name="color[]"
+                    value="beige"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-color-1" class="ml-3 text-sm text-gray-600">
+                    Beige
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-color-2"
+                    name="color[]"
+                    value="blue"
+                    type="checkbox"
+                    checked=""
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-color-2" class="ml-3 text-sm text-gray-600">
+                    Blue
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-color-3"
+                    name="color[]"
+                    value="brown"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-color-3" class="ml-3 text-sm text-gray-600">
+                    Brown
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-color-4"
+                    name="color[]"
+                    value="green"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-color-4" class="ml-3 text-sm text-gray-600">
+                    Green
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-color-5"
+                    name="color[]"
+                    value="purple"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-color-5" class="ml-3 text-sm text-gray-600">
+                    Purple
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Color -->
+
+<!-- Trained -->
+<div x-data="{ open: false }" class="py-6 border-b border-gray-200">
+    <h3 class="flow-root -my-3">
+        <button
+            type="button"
+            x-description="Expand/collapse section button"
+            class="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500"
+            aria-controls="filter-section-0"
+            @click="open = !open"
+            aria-expanded="true"
+            x-bind:aria-expanded="open.toString()"
+        >
+            <span class="font-medium text-gray-900"> Trained </span>
+            <span class="flex items-center ml-6">
+                <i class="fas fa-plus" x-show="!(open)"></i>
+                <i class="fas fa-minus" x-show="open"></i>
+            </span>
+        </button>
+    </h3>
+    <div
+        class="pt-6"
+        x-description="Filter section, show/hide based on section state."
+        id="filter-section-0"
+        x-show="open"
+    >
+        <div class="space-y-4">
+            <div class="flex items-center">
+                <input
+                    id="filter-care-and-behavior-0"
+                    name="trained[]"
+                    value="yes"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label
+                    for="filter-care-and-behavior-0"
+                    class="ml-3 text-sm text-gray-600"
+                >
+                    Yes
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-care-and-behavior-1"
+                    name="trained[]"
+                    value="no"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label
+                    for="filter-care-and-behavior-1"
+                    class="ml-3 text-sm text-gray-600"
+                >
+                    No
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Trained -->
+
+<!-- Buy / Adopt -->
+<div x-data="{ open: false }" class="py-6 border-b border-gray-200">
+    <h3 class="flow-root -my-3">
+        <button
+            type="button"
+            x-description="Expand/collapse section button"
+            class="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500"
+            aria-controls="filter-section-2"
+            @click="open = !open"
+            aria-expanded="true"
+            x-bind:aria-expanded="open.toString()"
+        >
+            <span class="font-medium text-gray-900"> Adopt / Buy </span>
+            <span class="flex items-center ml-6">
+                <i class="fas fa-plus" x-show="!(open)"></i>
+                <i class="fas fa-minus" x-show="open"></i>
+            </span>
+        </button>
+    </h3>
+    <div
+        class="pt-6"
+        x-description="Filter section, show/hide based on section state."
+        id="filter-section-2"
+        x-show="open"
+    >
+        <div class="space-y-4">
+            <div class="flex items-center">
+                <input
+                    id="filter-size-0"
+                    name="giveaway[]"
+                    value="adopt"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-0" class="ml-3 text-sm text-gray-600">
+                    Adopt
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    id="filter-size-1"
+                    name="giveaway[]"
+                    value="buy"
+                    type="checkbox"
+                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <label for="filter-size-1" class="ml-3 text-sm text-gray-600">
+                    Buy
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Buy / Adopt -->

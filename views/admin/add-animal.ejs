@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../includes/head") %> <%- include("../includes/navbar") %>
+        <title>Profile</title>
+        <script src="/scripts/breedSelector.js" defer></script>
+    </head>
+    <body class="bg-slate-200">
+        <div class="container mx-auto px-4 pt-8">
+            <div class="flex flex-wrap">
+                <!-- Sidebar -->
+                <section class="w-full md:w-1/6 lg:w-1/4 p-4">
+                    <%- include("../includes/sidebar") %>
+                </section>
+                <!-- End Sidebar -->
+
+                <!-- Main -->
+                <section class="w-full md:w-5/6 lg:w-3/4 p-4">
+                    <div
+                        class="bg-white border-transparent rounded-lg shadow-lg"
+                    >
+                        <div
+                            class="bg-blue-700 border-b-2 border-gray-400 rounded-tl-lg rounded-tr-lg p-2"
+                        >
+                            <h5 class="font-bold uppercase text-white">
+                                Add Pet Profile
+                            </h5>
+                        </div>
+                        <div class="p-6">
+                            <form
+                                action="/animal/add?_csrf=<%= locals.csrfToken %>"
+                                method="POST"
+                                enctype="multipart/form-data"
+                            >
+                                <section class="flex flex-row flex-wrap">
+                                    <!-- Name -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="breed-name"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Breed Name
+                                        </label>
+                                        <input
+                                            required
+                                            type="text"
+                                            placeholder="Enter Breed Name"
+                                            name="breedName"
+                                            id="breed-name"
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            value=""
+                                        />
+                                    </div>
+                                    <!-- End Name -->
+
+                                    <!-- isMixBreed -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3 gap-2"
+                                    >
+                                        <label
+                                            for="isMixBreed"
+                                            class="block text-gray-700 text-sm font-bold mb-2 w-full"
+                                        >
+                                            Is Mix Breed
+                                        </label>
+                                        <section
+                                            class="flex items-center gap-2"
+                                        >
+                                            <input
+                                                required
+                                                type="radio"
+                                                name="isMixBreed"
+                                                id="is-mix-breed-yes"
+                                                value="yes"
+                                            />
+                                            <label for="is-mix-breed-yes"
+                                                >Yes</label
+                                            >
+                                        </section>
+                                        <section
+                                            class="flex items-center gap-2"
+                                        >
+                                            <input
+                                                required
+                                                type="radio"
+                                                name="isMixBreed"
+                                                id="is-mix-breed-no"
+                                                value="no"
+                                            />
+                                            <label for="is-mix-breed-no"
+                                                >No</label
+                                            >
+                                        </section>
+                                    </div>
+                                    <!-- End isMixBreed -->
+
+                                    <!-- Origin -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="animal-origin"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Animal Origin
+                                        </label>
+                                        <input
+                                            required
+                                            name="animalOrigin"
+                                            id="animal-origin"
+                                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            list="origin-list"
+                                        />
+                                        <datalist id="origin-list">
+                                            <option value="" disabled selected>
+                                                Select Origin
+                                            </option>
+                                            <option value="male">Male</option>
+                                            <option value="female">
+                                                Female
+                                            </option>
+                                        </datalist>
+                                    </div>
+                                    <!-- End Origin -->
+
+                                    <!-- Type -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="type"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Type
+                                        </label>
+                                        <select
+                                            required
+                                            name="type"
+                                            id="type"
+                                            placeholder="Enter Type"
+                                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        >
+                                            <option value="" disabled selected>
+                                                Select Type
+                                            </option>
+                                            <option value="dog">Dog</option>
+                                            <option value="cat">Cat</option>
+                                            <option value="fish">Bird</option>
+                                            <option value="bird">Bird</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <!-- End Type -->
+
+                                    <!-- Category -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="category"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Category
+                                        </label>
+                                        <select
+                                            required
+                                            name="category"
+                                            id="category"
+                                            placeholder="Enter Category"
+                                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        >
+                                            <option value="" disabled selected>
+                                                Select category
+                                            </option>
+                                            <option value="dog">Dog</option>
+                                            <option value="cat">Cat</option>
+                                            <option value="fish">Fish</option>
+                                            <option value="bird">Bird</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <!-- End category -->
+
+                                    <!-- Color -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="color"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Color
+                                        </label>
+                                        <section class="flex flex-wrap pl-2">
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    name="color"
+                                                    value="black"
+                                                    id="color-black"
+                                                />
+                                                <label for="color-black"
+                                                    >Black</label
+                                                >
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    name="color"
+                                                    value="white"
+                                                    id="color-white"
+                                                />
+                                                <label for="color-white"
+                                                    >White</label
+                                                >
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    name="color"
+                                                    value="red"
+                                                    id="color-red"
+                                                />
+                                                <label for="color-red"
+                                                    >Red</label
+                                                >
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    name="color"
+                                                    value="brown"
+                                                    id="color-brown"
+                                                />
+                                                <label for="color-brown"
+                                                    >Brown</label
+                                                >
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    name="color"
+                                                    value="gray"
+                                                    id="color-gray"
+                                                />
+                                                <label for="color-gray"
+                                                    >Gray</label
+                                                >
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    name="color"
+                                                    value="pink"
+                                                    id="color-pink"
+                                                />
+                                                <label for="color-pink"
+                                                    >Pink</label
+                                                >
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    name="color"
+                                                    value="cream"
+                                                    id="color-cream"
+                                                />
+                                                <label for="color-cream"
+                                                    >Cream</label
+                                                >
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    name="color"
+                                                    value="golden"
+                                                    id="color-golden"
+                                                />
+                                                <label for="color-golden"
+                                                    >Golden</label
+                                                >
+                                            </section>
+                                        </section>
+                                    </div>
+                                    <!-- End Color -->
+
+                                    <!-- Physical -->
+                                    <div
+                                        class="flex flex-col flex-wrap mb-6 px-2 w-full"
+                                    >
+                                        <label
+                                            for="physical"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Physical
+                                        </label>
+                                        <section class="flex flex-wrap pl-2">
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="phy-shredding_lvl"
+                                                >
+                                                    Shredding Level
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="shredding_lvl"
+                                                    id="phy-shredding_lvl"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="phy-drolling_lvl"
+                                                >
+                                                    Drolling Level
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="drolling_lvl"
+                                                    id="phy-drolling_lvl"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="phy-coat_grooming_frequency"
+                                                >
+                                                    Coat Grooming Frequency
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="coat_grooming_frequency"
+                                                    id="phy-coat_grooming_frequency"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    for="coat_length"
+                                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                                >
+                                                    Coat Length
+                                                </label>
+                                                <select
+                                                    required
+                                                    name="coat_length"
+                                                    id="coat_length"
+                                                    class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                >
+                                                    <option
+                                                        value=""
+                                                        disabled
+                                                        selected
+                                                    >
+                                                        Select Coat Length
+                                                    </option>
+                                                    <option value="short">
+                                                        Short
+                                                    </option>
+                                                    <option value="medium">
+                                                        Medium
+                                                    </option>
+                                                    <option value="long">
+                                                        Long
+                                                    </option>
+                                                    <option value="extraLong">
+                                                        Extra Long
+                                                    </option>
+                                                </select>
+                                            </section>
+                                            <div
+                                                class="flex flex-col flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                            >
+                                                <label
+                                                    for="coat_type"
+                                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                                >
+                                                    Coat Type
+                                                </label>
+                                                <section
+                                                    class="flex flex-wrap pl-2"
+                                                >
+                                                    <section
+                                                        class="w-full md:w-1/2 lg:w-1/3"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            name="coat_type"
+                                                            value="double"
+                                                            id="coat_type-double"
+                                                        />
+                                                        <label
+                                                            for="coat_type-double"
+                                                        >
+                                                            Double
+                                                        </label>
+                                                    </section>
+                                                    <section
+                                                        class="w-full md:w-1/2 lg:w-1/3"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            name="coat_type"
+                                                            value="smooth"
+                                                            id="coat_type-smooth"
+                                                        />
+                                                        <label
+                                                            for="coat_type-smooth"
+                                                        >
+                                                            Smooth
+                                                        </label>
+                                                    </section>
+                                                </section>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <!-- End Physical -->
+
+                                    <!-- Size -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full md:w-1/2 lg:w-1/3"
+                                    >
+                                        <label
+                                            for="size"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Size
+                                        </label>
+                                        <select
+                                            required
+                                            name="size"
+                                            id="size"
+                                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        >
+                                            <option value="" disabled selected>
+                                                Select Size
+                                            </option>
+                                            <option value="small">Small</option>
+                                            <option value="medium">
+                                                Medium
+                                            </option>
+                                            <option value="large">Large</option>
+                                            <option value="extraLarge">
+                                                Extra Large
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!-- End Size -->
+
+                                    <!-- Qualities -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full"
+                                    >
+                                        <label
+                                            for="qualities"
+                                            class="block text-gray-700 text-sm font-bold mb-2"
+                                        >
+                                            Qualities
+                                        </label>
+                                        <section class="flex flex-wrap pl-2">
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-playfulness"
+                                                >
+                                                    Playfulness
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="playfulness"
+                                                    id="qual-playfulness"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-vocality"
+                                                >
+                                                    Vocality
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="vocality"
+                                                    id="qual-vocality"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-heat_sensitivity"
+                                                >
+                                                    Heat Sensitivity
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="heat_sensitivity"
+                                                    id="qual-heat_sensitivity"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-training"
+                                                >
+                                                    Training
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="training"
+                                                    id="qual-training"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-energy_lvl"
+                                                >
+                                                    Energy Level
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="energy_lvl"
+                                                    id="qual-energy_lvl"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-barking_lvl"
+                                                >
+                                                    Barking Level
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="barking_lvl"
+                                                    id="qual-barking_lvl"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-exercise_needs"
+                                                >
+                                                    Exercise Needs
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="exercise_needs"
+                                                    id="qual-exercise_needs"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-friendliness_to_dog"
+                                                >
+                                                    Friendliness to Dog
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="friendliness_to_dog"
+                                                    id="qual-friendliness_to_dog"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-friendliness_to_children"
+                                                >
+                                                    Friendliness to Children
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="friendliness_to_children"
+                                                    id="qual-friendliness_to_children"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-affectionate_with_family"
+                                                >
+                                                    Affectionate with Family
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="affectionate_with_family"
+                                                    id="qual-affectionate_with_family"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-openness_to_stranger"
+                                                >
+                                                    Openness to Stranger
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="openness_to_stranger"
+                                                    id="qual-openness_to_stranger"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-watch_or_protective"
+                                                >
+                                                    Watch or Protective
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="watch_or_protective"
+                                                    id="qual-watch_or_protective"
+                                                />
+                                            </section>
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3 flex flex-col"
+                                            >
+                                                <label
+                                                    class="mx-4"
+                                                    for="qual-adaptability_lvl"
+                                                >
+                                                    Adaptability Level
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    class="mx-4"
+                                                    min="0"
+                                                    max="5"
+                                                    name="adaptability_lvl"
+                                                    id="qual-adaptability_lvl"
+                                                />
+                                            </section>
+                                        </section>
+                                    </div>
+                                    <!-- End Qualities -->
+
+                                    <!-- Life / Height / Weight -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full"
+                                    >
+                                        <div class="flex flex-wrap w-full">
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3"
+                                            >
+                                                <section class="mx-2">
+                                                    <label
+                                                        for="avg_life"
+                                                        class="block text-gray-700 text-sm font-bold my-2"
+                                                    >
+                                                        Average Life (Years)
+                                                    </label>
+                                                    <div
+                                                        class="flex items-center shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight"
+                                                    >
+                                                        <i
+                                                            class="fas fa-heart"
+                                                        ></i>
+                                                        <input
+                                                            required
+                                                            name="avg_life"
+                                                            id="avg_life"
+                                                            type="number"
+                                                            class="rounded-r ml-2 w-full text-gray-700 focus:outline-none focus:shadow-outline"
+                                                        />
+                                                    </div>
+                                                </section>
+                                            </section>
+
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3"
+                                            >
+                                                <section class="mx-2">
+                                                    <label
+                                                        for="avg_height"
+                                                        class="block text-gray-700 text-sm font-bold my-2"
+                                                    >
+                                                        Average Height (cm)
+                                                    </label>
+                                                    <div
+                                                        class="flex items-center shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight"
+                                                    >
+                                                        <i
+                                                            class="fas fa-line-height"
+                                                        ></i>
+                                                        <input
+                                                            required
+                                                            name="avg_height"
+                                                            id="avg_height"
+                                                            type="number"
+                                                            class="rounded-r ml-2 w-full text-gray-700 focus:outline-none focus:shadow-outline"
+                                                        />
+                                                    </div>
+                                                </section>
+                                            </section>
+
+                                            <section
+                                                class="w-full md:w-1/2 lg:w-1/3"
+                                            >
+                                                <section class="mx-2">
+                                                    <label
+                                                        for="avg_weight"
+                                                        class="block text-gray-700 text-sm font-bold my-2"
+                                                    >
+                                                        Average Weight (Kgs)
+                                                    </label>
+                                                    <div
+                                                        class="flex items-center shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight"
+                                                    >
+                                                        <i
+                                                            class="fas fa-weight"
+                                                        ></i>
+                                                        <input
+                                                            required
+                                                            name="avg_weight"
+                                                            id="avg_weight"
+                                                            type="number"
+                                                            class="rounded-r ml-2 w-full text-gray-700 focus:outline-none focus:shadow-outline"
+                                                        />
+                                                    </div>
+                                                </section>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <!-- End Life / Height / Weight -->
+
+                                    <!-- Description -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full"
+                                    >
+                                        <label
+                                            for="description"
+                                            class="w-full mb-2"
+                                            >Description</label
+                                        >
+                                        <textarea
+                                            name="description"
+                                            id="description"
+                                            rows="2"
+                                            class="w-full resize-none border rounded-md shadow focus:outline-none p-6"
+                                        ></textarea>
+                                    </div>
+                                    <!-- End Description -->
+
+                                    <!-- Health -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full"
+                                    >
+                                        <label
+                                            for="caring_health"
+                                            class="w-full mb-2"
+                                            >Health</label
+                                        >
+                                        <textarea
+                                            name="caring_health"
+                                            id="caring_health"
+                                            rows="3"
+                                            class="w-full resize-none border rounded-md shadow focus:outline-none p-6"
+                                        ></textarea>
+                                    </div>
+                                    <!-- End Health -->
+
+                                    <!-- Grooming -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full"
+                                    >
+                                        <label
+                                            for="caring_grooming"
+                                            class="w-full mb-2"
+                                            >Grooming</label
+                                        >
+                                        <textarea
+                                            name="caring_grooming"
+                                            id="caring_grooming"
+                                            rows="3"
+                                            class="w-full resize-none border rounded-md shadow focus:outline-none p-6"
+                                        ></textarea>
+                                    </div>
+                                    <!-- End Grooming -->
+
+                                    <!-- Exercise -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full"
+                                    >
+                                        <label
+                                            for="caring_exercise"
+                                            class="w-full mb-2"
+                                            >Exercise</label
+                                        >
+                                        <textarea
+                                            name="caring_exercise"
+                                            id="caring_exercise"
+                                            rows="3"
+                                            class="w-full resize-none border rounded-md shadow focus:outline-none p-6"
+                                        ></textarea>
+                                    </div>
+                                    <!-- End Exercise -->
+
+                                    <!-- Training -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full"
+                                    >
+                                        <label
+                                            for="caring_training"
+                                            class="w-full mb-2"
+                                            >Training</label
+                                        >
+                                        <textarea
+                                            name="caring_training"
+                                            id="caring_training"
+                                            rows="3"
+                                            class="w-full resize-none border rounded-md shadow focus:outline-none p-6"
+                                        ></textarea>
+                                    </div>
+                                    <!-- End Training -->
+
+                                    <!-- Nutrition -->
+                                    <div
+                                        class="flex flex-wrap mb-6 px-2 w-full"
+                                    >
+                                        <label
+                                            for="caring_nutrition"
+                                            class="w-full mb-2"
+                                            >Nutrition</label
+                                        >
+                                        <textarea
+                                            name="caring_nutrition"
+                                            id="caring_nutrition"
+                                            rows="3"
+                                            class="w-full resize-none border rounded-md shadow focus:outline-none p-6"
+                                        ></textarea>
+                                    </div>
+                                    <!-- End Nutrition -->
+                                </section>
+
+                                <!-- Image Uploader -->
+                                <%- include("../includes/imageUploader", {
+                                multiple: true }) %>
+                                <!-- End Image Uploader -->
+                                <div class="flex items-center justify-between">
+                                    <button
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                        type="submit"
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <!-- End Main -->
+            </div>
+        </div>
+        <%- include("../includes/footer") %>
+        <script src="https://unpkg.com/create-file-list"></script>
+        <script src="/scripts/imagePreview.js"></script>
+    </body>
+</html>

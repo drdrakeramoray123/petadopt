@@ -1,0 +1,50 @@
+<tr>
+    <td class="px-6 py-4 whitespace-nowrap">
+        <div class="flex items-center">
+            <div class="flex-shrink-0 h-10 w-10">
+                <% if(animal.images && animal.images.length >= 1) { %>
+                <img
+                    class="h-10 w-10 rounded-full"
+                    src="<%= animal.images[0].replace('public', '') %>"
+                    alt="<%= animal.name
+                %>"
+                />
+                <% } else { %>
+                <i class="fas fa-paw text-2xl"></i>
+                <% } %>
+            </div>
+            <div class="ml-4">
+                <div class="text-sm text-gray-500">
+                    <%= animal.breedName.split("_").map((word) =>
+                    word.charAt(0).toUpperCase() + word.slice(1)).join(" ") %>,
+                    <%= animal.type.charAt(0).toUpperCase() +
+                    animal.type.slice(1) %>
+                </div>
+            </div>
+        </div>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+        <a
+            href="/info/animal/<%= animal.breedName %>"
+            class="text-indigo-600 hover:text-indigo-900"
+        >
+            <i class="fas fa-paw text-blue-500 text-2xl"></i>
+        </a>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+        <a
+            href="/animal/<%= animal._id %>/edit"
+            class="text-indigo-600 hover:text-indigo-900"
+        >
+            <i class="fas fa-edit text-blue-500 text-2xl"></i>
+        </a>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+        <a
+            href="/animal/<%= animal._id %>/delete"
+            class="text-indigo-600 hover:text-indigo-900"
+        >
+            <i class="far fa-trash-alt text-red-600 text-2xl"></i>
+        </a>
+    </td>
+</tr>
